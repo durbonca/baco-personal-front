@@ -1,13 +1,13 @@
-import { Card, CardHeader, Alert, CardMedia } from '@mui/material';
+import { Card, CardHeader, Alert, CardMedia, Typography } from '@mui/material';
+import { orderDateCL } from '../../functions';
 
 export const PersonalCard = ({ data }) => {
-    console.log('data', data)
-  const { nombre, file, desvinculado } = data;
+  const { nombre, file, nacionalidad, movil, desvinculado, fecha_nacimiento, fecha_ingreso, fecha_egreso, cargo } = data;
   return (
-    <Card  sx={{ maxWidth: 345 }} >
+    <Card sx={{ maxWidth: 345 }} >
         <CardHeader
         title={nombre}
-        subheader="September 14, 2016"
+        subheader={cargo}
       />
       <CardMedia
         component="img"
@@ -15,10 +15,16 @@ export const PersonalCard = ({ data }) => {
         alt={file.title}
       />
      {desvinculado && 
-     <Alert variant="outlined" severity="error">
-        DESVINCULADO
+     <Alert severity="error">
+        DESVINCULADE: {fecha_egreso}
      </Alert>
      }
+     <Typography style={{padding: '1em'}} variant="body1" color="text.secondary">
+        <div>Nacionalidad: {nacionalidad}</div>
+        <div>Movil: {movil}</div>
+        {fecha_nacimiento && <div>fecha de nacimiento: {orderDateCL(fecha_nacimiento)}</div>}
+        {fecha_ingreso && <div>fecha de ingreso: {orderDateCL(fecha_ingreso)}</div> }
+     </Typography>
     </Card>
   )
 }
