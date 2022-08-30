@@ -16,7 +16,7 @@ export const PersonalCard = ({ data }) => {
       />
      {desvinculado && 
      <Alert severity="error">
-        DESVINCULADE: {fecha_egreso}
+        DESVINCULADE: {orderDateCL(fecha_egreso)}
      </Alert>
      }
      <Typography style={{padding: '1em'}} variant="body1" color="text.secondary">
