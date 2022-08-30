@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { SideBar } from "./components"
+import "./styles.css"
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { db } from './utils/firebase';
 
-function App() {
+const theme = createTheme({
+  palette: {
+    white: {
+      main: "#fafafa",
+    },
+  },
+});
+
+const App = () => {
+  const [ secciones, setSecciones ] = useState([])
+
+  const getAllSeccions = () => {
+    db.collection('seccion').onSnapshot((snapshot) => {
+      const seccions = [];
+      snapshot.forEach((doc) => {
+        seccions.push({ id: doc.id, ...doc.data() });
+      });
+      setSecciones(seccions);
+    });
+  };
+
+  useEffect(() => {
+    getAllSeccions();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  <ThemeProvider theme={theme}>
+    <div className="main">
+      <SideBar secciones={secciones}/>
+      <div>
+        Main
+      </div>
     </div>
+  </ThemeProvider>
   );
 }
 
