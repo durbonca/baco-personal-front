@@ -20,19 +20,15 @@ const App = () => {
     });
   };
 
-  const getPersonalFilteredBySeccion = () => {
-    db.collection('personal').where("seccion", "==", activeIDSeccion).get().then((querySnapshot)=> {
-      const personalList = []
-      querySnapshot.forEach((doc) => {
-        personalList.push({ id: doc.id, ...doc.data() });
-      })
-      setActivePersonalList(personalList);
-    })
-  }
-
   useEffect(()=> {
     if(activeIDSeccion){
-      getPersonalFilteredBySeccion()
+      db.collection('personal').where("seccion", "==", activeIDSeccion).get().then((querySnapshot)=> {
+        const personalList = []
+        querySnapshot.forEach((doc) => {
+          personalList.push({ id: doc.id, ...doc.data() });
+        })
+        setActivePersonalList(personalList);
+      })
     }
   }, [activeIDSeccion])
 
