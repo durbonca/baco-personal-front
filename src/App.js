@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ThemeProvider } from '@mui/material/styles';
 import { db } from './utils/firebase';
 import { theme } from './utils/theme';
-import { SideBar } from "./components"
+import { SideBar, PersonalCard } from "./components"
 import "./styles.css"
 
 const App = () => {
@@ -40,11 +40,11 @@ const App = () => {
   <ThemeProvider theme={theme}>
     <div className="main">
       <SideBar secciones={secciones} setActiveIDSeccion={setActiveIDSeccion}/>
-      <div>
-        {activePersonalList && activePersonalList.length ? activePersonalList.map((personal, i)=>{
-          return( <div key={i}>{personal.nombre}</div> )
+      <div className="dashboard">
+        {activePersonalList && activePersonalList.length ? activePersonalList.map((data, i)=>{
+          return( <PersonalCard key={i} data={data} /> )
         }) :
-        <div> Parece que hector esta flojito y no ha metido personas en esta sección </div>
+        <div>No Data!</div>
       }
       </div>
     </div>

@@ -5,5 +5,8 @@ export const theme = createTheme({
       white: {
         main: "#fafafa",
       },
+      wine: {
+        main: "#732619"
+      }
     },
   });

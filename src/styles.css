@@ -7,3 +7,15 @@
 .main{
     display: flex;
 }
+
+.dashboard{
+    display: flex;
+    margin: 1em;
+    padding: 1em;
+    gap: 2em;
+    flex-wrap: wrap;
+    align-items: top;
+    justify-content: space-around;
+    height: calc(100vh - 32px);
+    overflow: scroll;
+}
