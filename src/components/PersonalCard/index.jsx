@@ -21,8 +21,8 @@ export const PersonalCard = ({ data }) => {
      }
      <Typography style={{padding: '1em'}} variant="body1" color="text.secondary">
         <div>Nacionalidad: {nacionalidad}</div>
-        <div>Movil: {movil}</div>
         {fecha_nacimiento && <div>fecha de nacimiento: {orderDateCL(fecha_nacimiento)}</div>}
+        <div>Celular: {movil}</div>
         {fecha_ingreso && <div>fecha de ingreso: {orderDateCL(fecha_ingreso)}</div> }
      </Typography>
     </Card>
